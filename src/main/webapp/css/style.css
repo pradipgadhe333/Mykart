@@ -1,0 +1,100 @@
+body{
+  background: lightgray;
+}
+
+.bg-custom{
+    background-color:#2196f3;
+}
+
+.admin .card{
+    border:1px solid green;
+}
+
+.admin .card:hover{
+    background: greenyellow;
+    cursor:pointer;
+}
+
+.instock-label{
+    font-size: 16px!important;
+    font-family: Roboto,Arial,sans-serif;
+    font-weight: 500!important;
+    color:green;
+}
+.outofstock-label{
+    font-size: 16px!important;
+    font-family: Roboto,Arial,sans-serif;
+    font-weight: 500!important;
+    color:red;
+}
+
+.off-label{
+    font-size: 18px!important;
+    font-family: Roboto,Arial,sans-serif;
+    font-weight: 500!important;
+    color:green;
+}
+
+.price-label{
+    text-decoration: line-through;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 18px!important;
+}
+
+.discount-label{
+    font-size: 20px!important;
+    font-family: Roboto,Arial,sans-serif;
+    font-weight: 500!important;
+    color: #212121!important;
+}
+.all-table{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px!important;
+}
+.table-data{
+    color: green;
+    font-weight: 700!important;
+}
+
+
+ #toast {
+        min-width: 300px;
+        position: fixed;
+        bottom: 50px;
+        left: 50%;
+        margin-left: -150px;
+        background: #333;
+        padding: 15px;
+        color: white;
+        text-align: center;
+        z-index: 1;
+        font-size: 20px;
+        visibility: hidden;
+        box-shadow: 0px 0px 100px #000;
+      }
+      #toast.display {
+        visibility: visible;
+        animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          bottom: 0;
+          opacity: 0;
+        }
+        to {
+          bottom: 50px;
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        from {
+          bottom: 50px;
+          opacity: 1;
+        }
+        to {
+          bottom: 0;
+          opacity: 0;
+        }
+      }
