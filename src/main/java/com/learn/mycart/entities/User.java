@@ -28,7 +28,7 @@ public class User {
     @Column(length=20, name="user_password")
     private String userPassword;
     
-    @Column(length=12, name="user_phone",unique = true)
+    @Column(length=12, name="user_phone")
     private String userPhone;
     
     @Column(length=1500, name="user_pic")

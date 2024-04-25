@@ -1,6 +1,7 @@
 com\learn\mycart\dao\CategoryDao.class
 com\learn\mycart\servlets\LoginServlet.class
 com\learn\mycart\servlets\ProductOperationServlet.class
+com\learn\mycart\helper\GEmailSender$1.class
 com\learn\mycart\servlets\OrderServlet.class
 com\learn\mycart\entities\Order.class
 com\learn\mycart\dao\OrderStatusDao.class
@@ -17,8 +18,10 @@ com\learn\mycart\servlets\DeleteProductServlet.class
 com\learn\mycart\dao\OrderDao.class
 com\learn\mycart\servlets\UpdateOrderServlet.class
 com\learn\mycart\entities\OrderedItem.class
+com\learn\mycart\entities\PaymentInformation.class
 com\learn\mycart\servlets\RegisterServlet.class
 com\learn\mycart\helper\Helper.class
 com\learn\mycart\servlets\LogoutServlet.class
 com\learn\mycart\dao\UserDao.class
 com\learn\mycart\helper\FactoryProvider.class
+com\learn\mycart\helper\GEmailSender.class

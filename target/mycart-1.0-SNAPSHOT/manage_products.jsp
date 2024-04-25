@@ -8,8 +8,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <title>View and Manage Products </title>
         <%@include file="components/common_css_js.jsp" %>
+        <style>
+           
+            .table th, .table td {
+                 width: auto;
+            }
+
+        </style>
          
     </head>
     <body style="background: white">
@@ -35,9 +44,9 @@
             <div class="row">
                 
                 <!--first col-->
-                <div class="col-md-2">
+                <div class="col-md-3 col-sm-12">
                     
-                    <div class="list-group mt-2 position-fixed" >
+                    <div class="list-group mt-2" >
                         <a href="#" class="list-group-item list-group-item-action active"><i class="fa fa-navicon fa-lg"> Menu</i> </a>
                         <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#add-category-modal"><i class="fa fa-plus-circle fa-lg"> Add Category</i> </a>
                         <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-th-large fa-lg"> View Categories</i> </a>
@@ -52,11 +61,11 @@
                 </div>
                 
                 <!--second col-->
-                <div class="col-md-10">
+                <div class="col-md-9 col-sm-12">
                     
                     <form class="my-3">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <input class="form-control" type="search" placeholder="Search Products..." aria-label="Search">
                             </div>
                             <div class="col-md-2">
@@ -66,60 +75,62 @@
                     </form>
 
                     
-                    <table class="table table-bordered all-table">
-                        <thead style="background: lightgray">
-                            <th>pId</th>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Discount</th>
-                            <th>After Discount</th>
-                            <th>Category</th>
-                            <th>Action</th>
-                        </thead>
-                        <tbody>
-                            <% 
-                                for(Product p:products)
-                                {
-                            %>
-                            <tr>
-                                <td><%= p.getpId() %></td>
-                                
-                                <td style="width: 400px"><%= p.getpName() %></td>
-                                
-                                <%
-                                    if(p.getpQuantity()>0)
+                    <div class="table-responsive">
+                        <table class="table table-bordered all-table">
+                            <thead style="background: lightgray">
+                                <th>pId</th>
+                                <th style="white-space:nowrap">Product Name</th>
+                                <th>Quantity</th>
+                                <th>MRP</th>
+                                <th>Discount</th>
+                                <th style="white-space:nowrap">After Discount</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <% 
+                                    for(Product p:products)
                                     {
                                 %>
-                                        <td style="width: 50px;color: green; font-weight: 700;"><%= p.getpQuantity() %></td>
-                                <%
-                                    } else{
+                                <tr>
+                                    <td><%= p.getpId() %></td>
+
+                                    <td style="width: 400px"><%= p.getpName() %></td>
+
+                                    <%
+                                        if(p.getpQuantity()>0)
+                                        {
+                                    %>
+                                            <td style="width: 50px;color: green; font-weight: 700;"><%= p.getpQuantity() %></td>
+                                    <%
+                                        } else{
+                                    %>
+                                         <td style="width: 50px;color: red; font-weight: 700;"><%= p.getpQuantity() %></td>
+                                    <%}%>
+
+                                    <td style="white-space:nowrap">&#8377; <%= p.getpPrice() %></td>
+
+                                    <td class="table-data" ><%= p.getpDiscount() %>%</td>
+
+                                    <td class="table-data">&#8377; <%= p.getPriceAfterApplyingDiscount() %></td>
+
+                                    <td><%= p.getCategory().getCategoryTitle().toString() %></td>
+
+                                    <td style="white-space:nowrap"> 
+                                        <a href="DeleteProductServlet?pId=<%= p.getpId() %>" data-toggle="tooltip" data-placement="bottom" title="Delete this product"><i class="fa fa-trash fa-2x" style="color:red"></i></a>
+
+                                        <a href="update_product.jsp?pId=<%= p.getpId() %>"  data-toggle="tooltip" data-placement="bottom" title="Update product details"><i class="fa fa-pencil-square fa-2x"></i></a>
+
+                                    </td>
+
+                                </tr>
+                                <% 
+                                    }
                                 %>
-                                     <td style="width: 50px;color: red; font-weight: 700;"><%= p.getpQuantity() %></td>
-                                <%}%>
-                                     
-                                <td>&#8377; <%= p.getpPrice() %></td>
-                                
-                                <td class="table-data" style="width: 50px"><%= p.getpDiscount() %> %</td>
-                                
-                                <td class="table-data">&#8377; <%= p.getPriceAfterApplyingDiscount() %></td>
-                                
-                                <td><%= p.getCategory().getCategoryTitle().toString() %></td>
-                                
-                                <td style="width: 100px"> 
-                                    <a href="DeleteProductServlet?pId=<%= p.getpId() %>" data-toggle="tooltip" data-placement="bottom" title="Delete this product"><i class="fa fa-trash fa-2x" style="color:red"></i></a>
-                                   
-                                    <a href="update_product.jsp?pId=<%= p.getpId() %>"  data-toggle="tooltip" data-placement="bottom" title="Update product details"><i class="fa fa-pencil-square fa-2x"></i></a>
-                                   
-                                </td>
-                                
-                            </tr>
-                            <% 
-                                }
-                            %>
-                    
-                        </tbody>
-                    </table>
+
+                            </tbody>
+                        </table>
+                    </div>
                     
                    
                 </div>

@@ -89,18 +89,19 @@ function updateCart()
         $(".cart-items").html(`( ${cart.length} )`);
 
         let table = `
+        <div class='table-responsive'>
             <table class='table'>
-            <thead class='thead-light'>
-        
-                <tr>
-                    <th>Item Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th>Action</th>
-                </tr>
-            
-            </thead>
+                <thead class='thead-light'>
+
+                    <tr>
+                        <th style="white-space:nowrap">Item Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
         
         
             `;
@@ -111,8 +112,8 @@ function updateCart()
             table+=`
                 <tr>
                     <td style="width:45%"> ${item.productName} </td>
-                    <td> &#8377; ${item.productPrice} </td>
-                    <td> <button onclick="decreaseItemQantity(${item.productId})" class="btn btn-outline-danger btn-sm" style="font-size:16px;"><b> - </b></button> ${item.productQuantity} <button onclick="increaseItemQantity(${item.productId})" class="btn btn-outline-success btn-sm" style="font-size:16px" ><b> + </b></button> </td>
+                    <td style="white-space:nowrap"> &#8377; ${item.productPrice} </td>
+                    <td style="white-space:nowrap"> <button onclick="decreaseItemQantity(${item.productId})" class="btn btn-outline-danger btn-sm" style="font-size:16px;"><b> - </b></button> ${item.productQuantity} <button onclick="increaseItemQantity(${item.productId})" class="btn btn-outline-success btn-sm" style="font-size:16px" ><b> + </b></button> </td>
                     <td> &#8377; ${item.productQuantity * item.productPrice} </td>
                     <td><button class="btn btn-danger btn-sm" onclick='deleteItemFromCart(${item.productId})'>Remove</button></td>
                 </tr>
@@ -125,7 +126,8 @@ function updateCart()
 
         table = table + `
             <tr><td colspan='4' class='text-right font-weight:900' style='font-size:20px';><b>Total Amount : &#8377; ${totalPrice}</b></td></tr>
-        </table>`;
+        </table>
+        </div> `;
         
         $(".cart-body").html(table);
         $(".checkout-btn").attr('disabled',false);
@@ -211,8 +213,8 @@ function deleteItemFromCart(pid)
     showToast("Item is removed from cart...");
 }
 
-//removes all items from after placing order
-function deleteAllItemsFromCart() {
+//removes all items from cart after placing order
+function deleteAllCartItems() {
     
  //let newcart = []; // create an empty array
  //localStorage.setItem('cart', JSON.stringify(newcart));
@@ -243,3 +245,5 @@ function goToCheckoout()
 {
     window.location="checkout.jsp";
 }
+
+

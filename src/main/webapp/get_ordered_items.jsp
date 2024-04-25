@@ -10,6 +10,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <title>Ordered Items Page</title>
         <%@include file="components/common_css_js.jsp" %>
         
@@ -29,6 +31,8 @@
             long orderId = Long.parseLong(request.getParameter("orderId").trim());
             OrderedItemDao itemDao=new OrderedItemDao(FactoryProvider.getFactory());
             List<OrderedItem> orderedItems = itemDao.getOrderedItemsByOrderId(orderId);
+       
+             User user = (User) session.getAttribute("current-user");
         %>
 
         <!--show Ordered Items-->
@@ -59,12 +63,7 @@
                         <div class="col-md-2">
                             <p>Price: &#8377; <%= item.getPrice() %> </p>
                         </div>
-<!--                        fifth col
-                        <div class="col-md-3">
-                           <p style="color:<%= item.getOrder().getOrderStatuses().get(item.getOrder().getOrderStatuses().size()-1).getStatusName().toString().equals("Delivered") ? "green" : item.getOrder().getOrderStatuses().get(item.getOrder().getOrderStatuses().size()-1).getStatusName().toString().equals("Cancelled") ? "red" : "black" %>"><%= item.getOrder().getOrderStatuses().get(item.getOrder().getOrderStatuses().size()-1).getStatusName() %> <span class="text-muted"> on <%= item.getOrder().getOrderStatuses().get(item.getOrder().getOrderStatuses().size()-1).getStatusDate() %> </span> </p>
-
-                        </div>-->
-                        
+                       
                     </div>
                     
                     <!--second row-->
@@ -78,7 +77,7 @@
                             <p><b>Order Status History:</b></p>
                             
                             <div class="status-container d-flex">
-                                <% List<OrderStatus> orderStatuses = item.getOrder().getOrderStatuses(); %>
+                                <% List<OrderStatus> orderStatuses = item.getOrder().getOrderStatus(); %>
                                 <% for(OrderStatus status : orderStatuses) { %>
                                     <div class="status-item">
                                         <p style="color:<%= status.getStatusName().equals("Delivered") ? "green" : status.getStatusName().equals("Cancelled") ? "red" : "black" %>">
@@ -98,11 +97,17 @@
             </div>
             
             <% } %>
-             
-            <div class="text-center my-4">
-                <a href="myorder.jsp" class="btn btn-primary">Go Back</a>
-            </div>
             
+            <% if(user.getUserType().equalsIgnoreCase("admin")){  %> 
+                <div class="text-center my-4">
+                    <a href="allorders.jsp" class="btn btn-primary">Go Back</a>
+                </div>
+            <%}else{%>
+                <div class="text-center my-4">
+                    <a href="myorder.jsp" class="btn btn-primary">Go Back</a>
+                </div>
+                
+            <%}%>
         </div>
             
             

@@ -57,7 +57,7 @@ public class UpdateOrderServlet extends HttpServlet {
                 
                 
                 // Add the orderStatus to the existing list of orderStatuses
-                order.getOrderStatuses().add(orderStatus);
+                order.getOrderStatus().add(orderStatus);
                 
                 s.save(orderStatus); // Save the OrderStatus entity
                
@@ -96,7 +96,7 @@ public class UpdateOrderServlet extends HttpServlet {
                 
                 
                 // Add the orderStatus to the existing list of orderStatuses
-                order.getOrderStatuses().add(orderStatus);
+                order.getOrderStatus().add(orderStatus);
                 
                 s.save(orderStatus); // Save the OrderStatus entity
                

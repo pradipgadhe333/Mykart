@@ -28,40 +28,40 @@ public class Order {
     @Column(name = "order_date")
     private String orderDate;
     
-    @Column(name = "total_amount")
-    private int totalAmount;
-    
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<OrderStatus> orderStatuses=new ArrayList<>();
-    
-    @Embedded
-    private ShippingDetails shippingDetails;
-    
-    @Column(name = "payment_option")
-    private String paymentOption;
- 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
     
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderedItem> orderedItems = new ArrayList<>();
-   
-//    Constructors
-
+    
+    @Column(name = "total_amount")
+    private int totalAmount;
+    
+    @Embedded
+    private ShippingDetails shippingDetails;
+    
+    @Embedded
+    private PaymentInformation paymentInformation;
+    
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<OrderStatus> orderStatus=new ArrayList<>();
+    
+    
+    //Constructors
     public Order() {
+        
     }
 
-    public Order(String orderDate, int totalAmount, List<OrderStatus> orderStatuses, ShippingDetails shippingDetails, String paymentOption, User user) {
+    public Order(String orderDate, User user, int totalAmount, ShippingDetails shippingDetails, PaymentInformation paymentInformation, List<OrderStatus> orderStatus) {
         this.orderDate = orderDate;
-        this.totalAmount = totalAmount;
-        this.orderStatuses=orderStatuses;
-        this.shippingDetails = shippingDetails;
-        this.paymentOption = paymentOption;
         this.user = user;
+        this.totalAmount = totalAmount;
+        this.shippingDetails = shippingDetails;
+        this.paymentInformation = paymentInformation;
+        this.orderStatus = orderStatus;
     }
 
-   
     //Getters and Setters
 
     public Long getOrderId() {
@@ -80,40 +80,6 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public int getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(int totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public List<OrderStatus> getOrderStatuses() {
-        return orderStatuses;
-    }
-
-    public void setOrderStatuses(List<OrderStatus> orderStatuses) {
-        this.orderStatuses = orderStatuses;
-        
-    }
-
-    
-    public ShippingDetails getShippingDetails() {
-        return shippingDetails;
-    }
-
-    public void setShippingDetails(ShippingDetails shippingDetails) {
-        this.shippingDetails = shippingDetails;
-    }
-
-    public String getPaymentOption() {
-        return paymentOption;
-    }
-
-    public void setPaymentOption(String paymentOption) {
-        this.paymentOption = paymentOption;
-    }
-
     public User getUser() {
         return user;
     }
@@ -130,17 +96,42 @@ public class Order {
         this.orderedItems = orderedItems;
     }
 
-     @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", user=" + user +
-                ", shippingDetails=" + shippingDetails +
-                ", orderDate=" + orderDate +
-                ", orderStatus=" + orderStatuses.get(0).getStatusName() +
-                ", totalAmount=" + totalAmount +
-                ", paymentOption='" + paymentOption + '\'' +
-                '}';
+    public int getTotalAmount() {
+        return totalAmount;
     }
+
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public ShippingDetails getShippingDetails() {
+        return shippingDetails;
+    }
+
+    public void setShippingDetails(ShippingDetails shippingDetails) {
+        this.shippingDetails = shippingDetails;
+    }
+
+    public PaymentInformation getPaymentInformation() {
+        return paymentInformation;
+    }
+
+    public void setPaymentInformation(PaymentInformation paymentInformation) {
+        this.paymentInformation = paymentInformation;
+    }
+
+    public List<OrderStatus> getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(List<OrderStatus> orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" + "orderId=" + orderId + ", orderDate=" + orderDate + ", user=" + user + ", orderedItems=" + orderedItems + ", totalAmount=" + totalAmount + ", shippingDetails=" + shippingDetails + ", paymentInformation=" + paymentInformation + ", orderStatus=" + orderStatus + '}';
+    }
+     
     
 }

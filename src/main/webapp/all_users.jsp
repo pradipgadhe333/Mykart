@@ -24,6 +24,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>View All Users Page</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
@@ -51,7 +52,7 @@
                 <!--first column side menu-->
                 <div class="col-md-3">
                     
-                    <div class="list-group mt-2 position-fixed " style="width:300px">
+                    <div class="list-group mt-2 " style="width:300px">
                         <a href="#" class="list-group-item list-group-item-action active"><i class="fa fa-navicon fa-lg"> Menu</i> </a>
                         <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#add-category-modal"><i class="fa fa-plus-circle fa-lg"> Add Category</i> </a>
                         <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-th-large fa-lg"> View Categories</i> </a>

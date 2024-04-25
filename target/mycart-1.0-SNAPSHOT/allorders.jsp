@@ -26,6 +26,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <title>All Orders Page</title>
         <%@include file="components/common_css_js.jsp" %>
 
@@ -56,14 +58,14 @@
         
         <!--show orders-->
         <div class="container-fluid">
-            <h3 class="text-center mt-2">All users order are here</h3>
+            <h3 class="text-center mt-2">All users order are here...</h3>
             
             <div class="row">
                 
                 <!--first column side menu-->
                 <div class="col-md-3">
                     
-                    <div class="list-group mt-2 position-fixed " style="width:300px">
+                    <div class="list-group mt-2  " style="width:300px">
                         <a href="#" class="list-group-item list-group-item-action active"><i class="fa fa-navicon fa-lg"> Menu</i> </a>
                         <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#add-category-modal"><i class="fa fa-plus-circle fa-lg"> Add Category</i> </a>
                         <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-th-large fa-lg"> View Categories</i> </a>
@@ -88,47 +90,57 @@
                         <div class="card-body">
 
                             <div class="container">
-                                <h5>
-                                <span style="display:inline-block">Order ID:<%= o.getOrderId() %></span>
-                                <span style="display:inline-block; float: right">Ordered By:<%= o.getUser().getUserName() %></span>
-                                </h5>
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="mr-3">Order ID: <%= o.getOrderId() %></h5>
+                                    <h5>Ordered By: <%= o.getUser().getUserName() %></h5>
+                                </div>
                             </div>
 
-                                <table class="table table-bordered all-table ">
-                                <tbody>
+                            <div class="table-responsive">
+                                 <table class="table table-bordered all-table">
+                                    <tbody>
 
-                                    <tr>
-                                        <td>Billing Name</td>
-                                        <td><%= o.getShippingDetails().getBillingName() %></td> 
-                                    </tr>
-                                    <tr>
-                                        <td>Billing Phone</td>
-                                        <td><%= o.getShippingDetails().getBillingPhone() %></td> 
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping Address</td>
-                                        <td><%= o.getShippingDetails().getShippingAddress() %></td> 
-                                    </tr>
-                                    <tr>
-                                        <td>Ordered Date</td>
-                                        <td><%= o.getOrderDate() %></td> 
-                                    </tr>
-                                    <tr>
-                                        <td>Order Status</td>
-                                        <td style="color:<%= o.getOrderStatuses().get(o.getOrderStatuses().size()-1).getStatusName().toString().equals("Delivered") ? "green" : o.getOrderStatuses().get(o.getOrderStatuses().size()-1).getStatusName().toString().equals("Cancelled") ? "red" : "black" %>"><%= o.getOrderStatuses().get(o.getOrderStatuses().size()-1).getStatusName() %> <span class="text-muted"> on <%= o.getOrderStatuses().get(o.getOrderStatuses().size()-1).getStatusDate() %> </span> </td>
+                                        <tr>
+                                            <td>Billing Name</td>
+                                            <td><%= o.getShippingDetails().getBillingName() %></td> 
+                                        </tr>
+                                        <tr>
+                                            <td>Billing Phone</td>
+                                            <td><%= o.getShippingDetails().getBillingPhone() %></td> 
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping Address</td>
+                                            <td><%= o.getShippingDetails().getShippingAddress() %></td> 
+                                        </tr>
+                                        <tr>
+                                            <td>Ordered Date</td>
+                                            <td><%= o.getOrderDate() %></td> 
+                                        </tr>
+                                        <tr>
+                                            <td>Order Status</td>
+                                            <td style="color:<%= o.getOrderStatus().get(o.getOrderStatus().size()-1).getStatusName().toString().equals("Delivered") ? "green" : o.getOrderStatus().get(o.getOrderStatus().size()-1).getStatusName().toString().equals("Cancelled") ? "red" : "black" %>"><%= o.getOrderStatus().get(o.getOrderStatus().size()-1).getStatusName() %> <span class="text-muted"> on <%= o.getOrderStatus().get(o.getOrderStatus().size()-1).getStatusDate() %> </span> </td>
 
-                                    </tr>
-                                    <tr>
-                                        <td>Order Amount</td>
-                                        <td>&#8377; <%= o.getTotalAmount() %></td> 
-                                    </tr>
-                                    <tr>
-                                        <td>Payment Option</td>
-                                        <td><%= o.getPaymentOption() %></td> 
-                                    </tr>
+                                        </tr>
+                                        <tr>
+                                            <td>Order Amount</td>
+                                            <td>&#8377; <%= o.getTotalAmount() %></td> 
+                                        </tr>
+                                        <tr>
+                                            <td>Payment Method</td>
+                                            <td><%= o.getPaymentInformation().getPaymentMethod() %></td> 
+                                        </tr>
+                                        <tr>
+                                            <td>Payment Id</td>
+                                            <td><%= o.getPaymentInformation().getPaymentId() %></td> 
+                                        </tr>
+                                        <tr>
+                                            <td>Payment Status</td>
+                                            <td><%= o.getPaymentInformation().getPaymentStatus() %></td> 
+                                        </tr>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>    
+                            </div>   
 
                             <div class="text-center">
                                 <% if (user.getUserType().equalsIgnoreCase("admin")) { %>
