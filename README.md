@@ -1,4 +1,4 @@
-Project Name: Mykart E-commerce Web Application  <br>
+# Project Name: Mykart E-commerce Web Application  <br>
 Technology: <br>
 •	Frontend: HTML5, CSS3, Bootstrap4, JavaScript, jQuery and AJAX <br>
 •	Backend: Java EE(Servlet, JSP), Hibernate (5.6.10) <br>
