@@ -1,11 +1,11 @@
-Project Name: Mykart E-commerce Web Application
-Technology: 
-•	Frontend: HTML5, CSS3, Bootstrap4, JavaScript, jQuery and AJAX
-•	Backend: Java EE(Servlet, JSP), Hibernate (5.6.10)
-•	Database: MySQL (8.0.33)
-•	Tools: Apache NetBeans IDE and Apache Maven Build Tool
+Project Name: Mykart E-commerce Web Application  <br>
+Technology: <br>
+•	Frontend: HTML5, CSS3, Bootstrap4, JavaScript, jQuery and AJAX <br>
+•	Backend: Java EE(Servlet, JSP), Hibernate (5.6.10) <br>
+•	Database: MySQL (8.0.33) <br>
+•	Tools: Apache NetBeans IDE and Apache Maven Build Tool <br>
 
-Project Description:
+Project Description: <br>
 The Mykart E-commerce Web Application was designed to provide users with a seamless and feature-rich online shopping experience, which includes the following key modules:
 
 1.	User Authentication and Management:
